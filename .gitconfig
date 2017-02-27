@@ -1,0 +1,58 @@
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+	
+[alias]
+    # one-line log
+    l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+
+
+    lg = log -p
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+
+
+    a = add
+    ap = add -p
+    br = branch
+    c = commit --verbose
+    ca = commit -a --verbose
+    ci = commit
+    cm = commit -m
+    cam = commit -a -m
+
+
+    dt = difftool
+    dtc = difftool --cached # diff staged changes
+    m = commit --amend --verbose
+
+
+    df = diff
+    ds = diff --stat
+    dc = diff --cached
+
+
+    ls = ls-files
+    st = status
+    co = checkout
+    cob = checkout -b
+    # list branches sorted by last modified
+    b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+
+
+    # list aliases
+    la = "!git config -l | grep alias | cut -c 7-"
+
+
+    us = reset HEAD
+    cp = cherry-pick
